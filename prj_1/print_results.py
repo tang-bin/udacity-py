@@ -74,6 +74,27 @@ def print_results(results_dic, results_stats_dic, model,
     print("== No./Pct. of correct Dogs: \t\t {} / {}%".format(r["n_correct_dogs"], round(r["pct_correct_dogs"] * 100, 2)))
     print("== No./Pct. of correct breed: \t {} / {}%".format(r["n_correct_breed"], round(r["pct_correct_breed"] * 100, 2)))
     print("== No./Pct. of correct not Dogs: \t {} / {}%".format(r["n_correct_notdogs"], round(r["pct_correct_notdogs"] * 100, 2)))
+
+    if print_incorrect_dogs:
+        print("== Incorrect Dogs:")
+        count = 0
+        for key, val in results_dic.items():
+            if val[3] != val[4]:
+                print("==== " + key)
+                count += 1
+        if count == 0:
+            print("==== None")
+
+    if print_incorrect_breed:
+        print("== Incorrect Breeds:")
+        count = 0
+        for key, val in results_dic.items():
+            if val[3] == 1 and val[4] == 1 and val[2] == 0:
+                print("==== " + key)
+                count += 1
+        if count == 0:
+            print("==== None")
+
     print("===============================================================")
     
     None
